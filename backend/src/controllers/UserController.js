@@ -64,10 +64,10 @@ module.exports = {
         try {
 			if(await bcrypt.compare(req.body.password, user.password)) {
 				// authorizate user
-				const accessToken = jwt.sign(userHashed, process.env.ACCESS_TOKEN_SECRET);
+				const token = jwt.sign(userHashed, process.env.ACCESS_TOKEN_SECRET);
 				
 				delete user.password;
-				res.json({ ...user, accessToken: accessToken });
+				res.json({ ...user, token: token });
 			} else {
 				res.send({ success: false, error: 'Wrong password' });
 			}

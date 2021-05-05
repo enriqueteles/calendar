@@ -1,0 +1,36 @@
+.sidebar {
+    flex: 0.5;
+    display: flex;
+    background-color: #F4F4F8;
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar__up {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar__icon {
+    font-size: 35px !important;
+    color: #04325A;
+    background-color: white;
+    border-radius: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.sidebar__icon:hover {
+    color: white;
+    background-color: #04325A;
+}
+
+.sidebar__icon.selected {
+    color: white;
+    background-color: #04325A;
+}

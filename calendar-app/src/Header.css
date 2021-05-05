@@ -1,0 +1,36 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10px;
+    background-color: #F4F4F8;
+}
+
+.header__left {
+    display: flex;
+    align-items: center;
+    color: #04325A;
+}
+
+.header__calendarIcon {
+    padding: 0 20px;
+    font-size: 40px !important;
+}
+
+.header__left > h1 {
+    font-size: 40px;
+}
+
+.header__right {
+    display: flex;
+    align-items: center;
+    color: #2D2D2D;
+}
+
+.header__right > * {
+    margin-right: 15px;
+}
+
+.header__right > p {
+    font-size: 18px;   
+}

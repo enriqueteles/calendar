@@ -1,0 +1,123 @@
+.login {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.login__left {
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.login__div {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10vh;
+    margin-left: 10vw;
+    margin-bottom: 10vh;
+}
+
+.login__calendarIcon {
+    font-size: 100px !important;
+    color: #04325A;
+    margin-top: 15px;
+}
+
+.login__div h1 {
+    font-size: 53px;
+    color: #04325A;
+    margin-bottom: 0;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.login__div h3 {
+    color: #04325A;
+    font-family: Comfortaa;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.login__right {
+    background-color: #04325A;
+    color: white;
+    flex: 5;
+    margin: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login__right h1 {
+    color: white;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 66px;
+}
+
+.login__right h3 {
+    font-size: 18px;
+    line-height: 27px;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.login__input {
+    width: 25vw !important;
+    color: white !important;
+    background-color: #04325A !important;
+    border: 0 !important;
+    margin-bottom: 20px;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    border-bottom: 1px solid white !important;
+}
+
+.login__input input.ant-input {
+    margin-left: 10px;
+    color: white;
+    background-color: #04325A;
+}
+
+button.ant-btn.login__btnFilled {
+    margin: 20px 0;
+    background-color: white;
+    color: #04325A;
+    border: 0;
+    font-size: 24px;
+    line-height: 19px;
+    width: 25vw;
+    height: 40px;
+    border-radius: 10px;
+}
+
+button.login__btn  {
+    color: white;
+    background-color: #04325A;
+    border: 0;
+    font-size: 24px;
+    line-height: 19px;
+    width: 25vw;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.login__right p {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: center;
+}

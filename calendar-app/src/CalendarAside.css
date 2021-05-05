@@ -1,0 +1,30 @@
+.calendarAside {
+    flex: 3;
+    padding: 20px;
+    background-color: #fafafa;
+    border-left: 3px solid #F4F4F8;
+}
+
+.nice-dates-navigation {
+    margin-bottom: 30px;
+}
+
+.nice-dates-navigation_current {
+    color: #04325A;
+    font-size: 28px;
+}
+
+.nice-dates-day:before {
+    background-color: #04325A;
+}
+
+.calendarAside__addEvent {
+    background-color: #04325A;
+    width: 100%;
+    border: 0;
+    margin-top: 30px;
+}
+
+.calendarAside__addEvent:hover {
+    background-color: #1d588b;
+}

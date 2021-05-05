@@ -1,0 +1,35 @@
+.calendarByDay {
+    margin-top: 50px;
+}
+
+.calendarByDay__event {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.calendarByDay__eventRow {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.calendarByDay__eventRow hr {
+    flex: 1;
+}
+
+.calendarByDay__eventRow p {
+    margin: 10px 30px;
+}
+
+.calendarByDay__eventBlock {
+    background-color: #04325A;
+    color: white;
+    height: 70px;
+    border-radius: 10px;
+}
+
+.calendarByDay__eventBlock p {
+    padding-top: 10px;
+    padding-left: 20px;
+    font-size: 18px;
+}

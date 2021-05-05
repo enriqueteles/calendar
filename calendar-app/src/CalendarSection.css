@@ -1,0 +1,11 @@
+.calendarSection {
+    flex: 8;
+    padding: 30px;
+    padding-top: 50px;
+    background-color: #fafafa;
+}
+
+.calendarSection h1 {
+    color: #04325A;
+    font-size: 38px;
+}
