@@ -5,6 +5,7 @@ import routes from './routes';
 import Auth from './auth';
 
 import Login from './Login';
+import Home from './Home';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import CalendarSection from './CalendarSection';
@@ -25,15 +26,13 @@ export const PrivateRoute = ({ indicator, component, ...rest }) => (
       }
 
       const Component = component;
-      return <component {...props} />;
+      return <Component {...props} />;
     }}
   />
 );
 
 
 function App() {
-  const [date, setDate] = useState(null);
-  
   return (
     <BrowserRouter>
       <div className="app">
@@ -42,17 +41,7 @@ function App() {
           <Route path={routes.login} component={Login} exact></Route>
           <PrivateRoute
                 path={routes.home}
-                components={
-                  <>
-                  <Header />
-
-                  <div className="app__page">
-                    <Sidebar />
-                    <CalendarSection date={date} setDate={setDate} />
-                    <CalendarAside date={date} setDate={setDate} />
-                  </div>
-                  </>
-                }
+                component={Home}
                 exact
               ></PrivateRoute>
         </Switch>

@@ -8,11 +8,13 @@ import 'react-nice-dates/build/style.css'
 import EventItemPopover from './EventItemPopover';
 import './CalendarAside.css';
 
-function CalendarAside({ date, setDate }) {
+function CalendarAside({ date, setDate, refresh, setRefresh }) {
     
     const content = (
         <EventItemPopover 
             eventItem={null}
+            refresh={refresh}
+            setRefresh={setRefresh}
         />
       );
     

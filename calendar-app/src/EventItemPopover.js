@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import { enUS, pt } from 'date-fns/locale';
 import dateFnsGenerateConfig from 'rc-picker/lib/generate/dateFns';
 import generatePicker from 'antd/es/date-picker/generatePicker';
+import axios from 'axios';
 
 
 import './EventItemPopover.css';
@@ -13,6 +14,8 @@ import './EventItemPopover.css';
 function EventItemPopover(
     {
         eventItem,
+        refresh,
+        setRefresh
     }) {
         
     useEffect(() => {
@@ -22,7 +25,7 @@ function EventItemPopover(
             setStartDate(new Date(eventItem.startDate));
             setEndDate(new Date(eventItem.endDate));
             setDescription(eventItem.description);
-            setColorTag(eventItem.colorTag);
+            // setColorTag(eventItem.colorTag);
             setTagId(eventItem.tagId);
 
             setMode("View");
@@ -39,7 +42,8 @@ function EventItemPopover(
             console.log(startDate);
         }
 
-        if(colorTag == null) setColorTag('#04325A');
+        if(!colorTag) setColorTag('#04325A');
+        console.log(colorTag)
     }, [eventItem]);
 
     const [id, setId] = useState(null);
@@ -56,12 +60,73 @@ function EventItemPopover(
 
     const DatePicker = generatePicker(dateFnsGenerateConfig);
 
-    const editEvent = async () => {
+    const editMode = async () => {
 
-        if(mode == "Edit") setMode("View");
-        else if(mode == "View") setMode("Edit");
+        if(mode === "Edit") {
+            editEvent();
+            setMode("View");
+        }
+        else if(mode === "View") setMode("Edit");
     }
 
+    async function addEvent() {
+        await axios.post('/events', {
+            startDate,
+            endDate,
+            name,
+            description
+        })
+			.then(res => {
+                setId(null);
+                setName(null);
+                setStartDate(new Date());
+                setEndDate(new Date());
+                setDescription(null);
+                setColorTag('#04325A');
+                setTagId(null);
+                
+				setRefresh(true);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+        return 0;
+      }
+
+    async function editEvent() {
+        await axios.patch(`/events/${id}`, {
+            startDate,
+            endDate,
+            name,
+            description
+        })
+			.then(res => {
+				setRefresh(true);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+        return 0;
+      }
+
+    async function deleteEvent() {
+        await axios.delete(`/events/${id}`)
+			.then(res => {
+                setId(null);
+                setName(null);
+                setStartDate(new Date());
+                setEndDate(new Date());
+                setDescription(null);
+                setColorTag('#04325A');
+                setTagId(null);
+                
+				setRefresh(true);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+        return 0;
+      }
 
     return (
         <div className="eventItemPopover">
@@ -84,10 +149,10 @@ function EventItemPopover(
                 <Col span={22}>
                     {mode == "View" ? (
                         <>
-                            <span className="eventItemPopover__spanBold" style={{color: colorTag}}>{format(new Date(startDate), 'hh:mm', { locale: enUS })}</span>
+                            <span className="eventItemPopover__spanBold" style={{color: colorTag}}>{format(new Date(startDate), 'HH:mm', { locale: enUS })}</span>
                             <span className="eventItemPopover__spanRegular" > {format(new Date(startDate), 'MMM dd', { locale: enUS })}</span>
                             <span className="eventItemPopover__title" > - </span>
-                            <span className="eventItemPopover__spanBold" style={{color: colorTag}}>{format(new Date(endDate), 'hh:mm', { locale: enUS })}</span>
+                            <span className="eventItemPopover__spanBold" style={{color: colorTag}}>{format(new Date(endDate), 'HH:mm', { locale: enUS })}</span>
                             <span className="eventItemPopover__spanRegular" > {format(new Date(endDate), 'MMM dd', { locale: enUS })}</span>
                         </>
                     ) : (
@@ -120,17 +185,17 @@ function EventItemPopover(
                     <div />
                 </Col>
                 <Col span={22} className="eventItemPopover__right">
-                    {mode == "Edit" ? (
+                    {mode === "Edit" ? (
                         <>
-                            <Button type="primary" size="default" className="eventItemPopover__editBtn" onClick={() => {editEvent()}} >Editar</Button>
+                            <Button type="primary" size="default" className="eventItemPopover__editBtn" onClick={() => {editMode()}} >Editar</Button>
                         </>
                     ) : (<>
-                        {mode == "Add" ? (
-                            <Button type="primary" size="default" className="eventItemPopover__addBtn" >Add</Button>
+                        {mode === "Add" ? (
+                            <Button type="primary" size="default" className="eventItemPopover__addBtn" onClick={() => {addEvent()}} >Add</Button>
                         ) : (
                             <>
-                                <Button type="primary" size="default" danger>Deletar</Button>
-                                <Button type="primary" size="default" onClick={() => {editEvent()}} >Editar</Button>
+                                <Button type="primary" size="default" danger onClick={() => {deleteEvent()}} >Deletar</Button>
+                                <Button type="primary" size="default" onClick={() => {editMode()}} >Editar</Button>
                             </>
                         )} 
                     </>)}

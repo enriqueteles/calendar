@@ -13,12 +13,16 @@
 }
 
 .header__calendarIcon {
-    padding: 0 20px;
+    margin: 0 20px;
+    margin-top: 0;
     font-size: 40px !important;
 }
 
 .header__left > h1 {
     font-size: 40px;
+    color: #04325A;
+    text-align: center;
+    margin-bottom: 0;
 }
 
 .header__right {
@@ -32,5 +36,6 @@
 }
 
 .header__right > p {
-    font-size: 18px;   
+    margin: 20px;
+    font-size: 18px;
 }

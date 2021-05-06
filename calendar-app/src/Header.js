@@ -1,11 +1,26 @@
 import React from 'react';
-import './Header.css';
+import { Menu, Dropdown } from 'antd';
+import { Link } from 'react-router-dom';
+
+import Auth from './auth';
+import routes from './routes';
+
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/core/Avatar';
+import './Header.css';
 
 function Header() {
+    let userData = JSON.parse(localStorage.getItem('userData'));
+
+    const menu = (
+        <Menu>
+          <Menu.Item>
+            <Link to={routes.login} onClick={() => {Auth.logOut()}}>Logout</Link>
+          </Menu.Item>
+        </Menu>
+      );
+    
     return (
         <div className="header">
             <div className = "header__left">
@@ -15,11 +30,13 @@ function Header() {
 
             <div className="header__right">
                 <Avatar 
-                    alt="Enrique Teles"
+                    alt={userData ? userData.name : ""}
                     src="https://avatars.githubusercontent.com/u/39441836?v=4"
                 />
-                <p>Enrique Teles</p>
-                <ExpandMoreIcon />
+                <p>{userData ? userData.name : ""}</p>
+                <Dropdown overlay={menu}>
+                    <ExpandMoreIcon />
+                </Dropdown>
             </div>
 
         </div>

@@ -34,8 +34,7 @@ export default class Auth {
     });
   }
 
-  static logOut(ignoreBackendTokens) {
-    if (!ignoreBackendTokens) axios.post('/logout');
+  static logOut() {
     localStorage.removeItem('userData');
     localStorage.clear();
     axios.defaults.headers.common.Authorization = null;

@@ -1,6 +1,11 @@
 import { Input } from 'antd';
 import Button from 'antd/es/button';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+
+import Auth from './auth';
+
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -13,6 +18,7 @@ import './Login.css';
 
 function Login() {
 
+    const [isLogged, setIsLogged] = useState(false);
     const [register, setRegister] = useState(false);
 
     const [email, setEmail] = useState("");
@@ -20,9 +26,46 @@ function Login() {
     const [name, setName] = useState("");
     const [password2, setPassword2] = useState("");
 
+    useEffect(() => {
+        setIsLogged(Auth.isAuthenticated() != false);
+        setPassword('');
+    }, [Auth.isAuthenticated()])
+    
+    async function handleLogin() {
+        const response = await Auth.logIn(email, password);
+        setIsLogged(response); 
+
+        if (!response)
+        alert('Incorred email and / or password');
+
+        return 0;
+      }
+
+    async function registerUser() {
+        if(password !== password2) {
+            alert("Password doesn't match");
+            return 0;
+        }
+        
+        await axios.post('/register', {
+            email,
+            password,
+            name
+        })
+			.then(res => {
+                handleLogin();
+                setRegister(false);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+        return 0;
+      }
 
     return (
         <div className="login">
+            {isLogged && <Redirect to="/" />}
+
             <div className="login__left">
                 <div className="login__div">
                     <EventAvailableIcon className="login__calendarIcon" />
@@ -43,7 +86,7 @@ function Login() {
                         <h3>Organize and share your events easily</h3>
                         <Input value={email} onChange={e => {setEmail(e.target.value)}} placeholder={"Email"} prefix={<MailOutlineOutlinedIcon />} className="login__input" ></Input>
                         <Input value={password} onChange={e => {setPassword(e.target.value)}} placeholder={"Password"} prefix={<LockOutlinedIcon />} className="login__input" ></Input>
-                        <Button className="login__btnFilled" >Sign In</Button>
+                        <Button className="login__btnFilled" onClick={() => handleLogin()} >Sign In</Button>
                         <p>or</p>
                         <Button className="login__btn" onClick={() => setRegister(true)} >Sign Up</Button>
                     </>
@@ -55,7 +98,7 @@ function Login() {
                         <Input value={email} onChange={e => {setEmail(e.target.value)}} placeholder={"Email"} prefix={<MailOutlineOutlinedIcon />} className="login__input" ></Input>
                         <Input value={password} onChange={e => {setPassword(e.target.value)}} placeholder={"Password"} prefix={<LockOutlinedIcon />} className="login__input" ></Input>
                         <Input value={password2} onChange={e => {setPassword2(e.target.value)}} placeholder={"Repeat Password"} prefix={<LockOutlinedIcon />} className="login__input" ></Input>
-                        <Button className="login__btnFilled" >Sign Up</Button>
+                        <Button className="login__btnFilled" onClick={() => registerUser()} >Sign Up</Button>
                         <p>or</p>
                         <Button className="login__btn" onClick={() => setRegister(false)} >Sign In</Button>
                     </>
