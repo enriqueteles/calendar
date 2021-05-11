@@ -2,8 +2,8 @@ import React from 'react';
 import { Menu, Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
 
-import Auth from './auth';
-import routes from './routes';
+import Auth from '../../auth';
+import routes from '../../routes';
 
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';

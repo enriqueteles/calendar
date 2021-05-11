@@ -4,14 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
-import Auth from './auth';
+import Auth from '../../auth';
 
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 
-import ImageVct from './assets/login_img.svg';
+import ImageVct from '../../assets/login_img.svg';
 
 
 import './Login.css';

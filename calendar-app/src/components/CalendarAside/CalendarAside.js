@@ -5,7 +5,7 @@ import { DatePickerCalendar } from 'react-nice-dates'
 import { Button, Popover } from 'antd';
 import 'react-nice-dates/build/style.css'
 
-import EventItemPopover from './EventItemPopover';
+import EventItemPopover from '../EventItemPopover/EventItemPopover';
 import './CalendarAside.css';
 
 function CalendarAside({ date, setDate, refresh, setRefresh }) {

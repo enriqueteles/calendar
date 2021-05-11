@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { enUS, pt } from 'date-fns/locale';
 import axios from 'axios';
 
-import CalendarByDay from './CalendarByDay';
+import CalendarByDay from '../CalendarByDay/CalendarByDay';
 import './CalendarSection.css';
 
 function CalendarSection({ date, setDate, refresh, setRefresh }) {

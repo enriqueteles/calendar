@@ -4,7 +4,7 @@ import { Popover } from 'antd';
 import 'antd/dist/antd.css'; 
 import 'antd/lib/popover/style/index.css'
 
-import EventItemPopover from './EventItemPopover';
+import EventItemPopover from '../EventItemPopover/EventItemPopover';
 import './CalendarByDay.css';
 
 function CalendarByDay({ 

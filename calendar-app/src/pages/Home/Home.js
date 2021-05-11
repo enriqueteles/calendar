@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import Header from './Header';
-import Sidebar from './Sidebar';
-import CalendarSection from './CalendarSection';
-import CalendarAside from './CalendarAside';
+import Header from '../../components/Header/Header';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import CalendarSection from '../../components/CalendarSection/CalendarSection';
+import CalendarAside from '../../components/CalendarAside/CalendarAside';
 import './Home.css';
 
 function Home() {
